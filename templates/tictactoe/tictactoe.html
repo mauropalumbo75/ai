@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/tictactoe.css" %}">
+  </head>
+
+  <body>
+    <div class="container">
+
+
+  <div class="jumbotron">
+    <h1>Welcome to Tic Tac Toe!</h1>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 boxy" >
+        <p>
+          A simple project demonstrating reinforcement learning (RL) for tic tac toe.
+          You should first train your agent and then try to play.
+        </p>
+        <h3>
+          Training
+        </h3>
+        <p>
+          Currently trained with {{ training_episodes }} episodes. If you want to train the agent again, set the number 
+          of episodes and click the "Train" button.
+        </p>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="number" name="training_episodes" min="100" max="9999" value="{{ training_episodes }}" step="10">
+            (Min: 100, Max: 9999)
+          </div>
+
+          <input id="train" type="submit" value="Train" class="btn btn-primary btn-lg"></input>
+
+        </form>
+
+        <h3>
+          Playing
+        </h3>
+        <p>
+          <form method="POST">
+            {% csrf_token %}
+            <input id="train" type="submit" value="Play" class="btn btn-primary btn-lg"></input>
+          </form>
+        </p>  
+      </div>
+      <div class="col-md-6 boxy" >
+        <table align='center'>
+          <tr>
+            <td id="0" class="ttt"></td>
+            <td id="1" class="ttt"></td>
+            <td id="2" class="ttt"></td>
+          </tr>
+          <tr>
+            <td id="3" class="ttt"></td>
+            <td id="4" class="ttt"></td>
+            <td id="5" class="ttt"></td>
+          </tr>
+          <tr>
+            <td id="6" class="ttt"></td>
+            <td id="7" class="ttt"></td>
+            <td id="8" class="ttt"></td>
+          </tr>
+        </table>     
+      </div>
+    </div>
+  </div>
+
+
+   <script type="text/javascript" src="{% static "js/tictactoe.js" %}"></script>
+   </div>
+  </body>
+
+</html>
