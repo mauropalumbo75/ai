@@ -18,7 +18,6 @@ function getCookie(name) {
   return cookieValue;
 }
 
-
 // Grab all the squares
 var squares = document.querySelectorAll("td");
 
@@ -31,17 +30,14 @@ function clearBoard() {
 
 // Create a function that will check the square marker
 function changeMarker(){
+
   // send a POST request with the position clicked
   var csrftoken = getCookie('csrftoken');
-  alert(csrftoken);
   xhttp.open("POST", "", true);
-  xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // POST as a form
   xhttp.setRequestHeader("X-CSRFToken", csrftoken);
   xhttp.send("csrfmiddlewaretoken="+csrftoken+"&id="+this.id);
-  //xhttp.send(this.id);
-  if(this.textContent === ''){
-    this.textContent = 'X';
-  }
+
 };
 
 // Use a for loop to add Event listeners to all the squares
