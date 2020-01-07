@@ -254,7 +254,7 @@ class Human:
   def set_symbol(self, sym):
     self.sym = sym
 
-  def take_action(self, env):
+  def take_action(self, env, move=None):
     while True:
       # break if we make a legal move
       move = input("Enter coordinates i,j for your next move (i,j=0..2): ")
@@ -370,7 +370,6 @@ def initialV_o(env, state_winner_triples):
     V[state] = v
   return V
 
-
 def play_game(p1, p2, env, draw=False):
   # loops until the game is over
   current_player = None
@@ -403,3 +402,37 @@ def play_game(p1, p2, env, draw=False):
   # do the value function update
   p1.update(env)
   p2.update(env)
+
+class Game:
+  def __init__(self):
+    self.p1 = Agent()
+    self.p2 = Human()
+    self.env = Environment()
+
+  def reset(self):
+    self.p1 = Agent()
+    self.p2 = Human()
+    self.env = Environment()
+
+  def play_first_move(self):
+    self.p1.take_action(self.env)
+
+    # update state histories
+    state = self.env.get_state()
+    self.p1.update_state_history(state)
+    self.p2.update_state_history(state)
+
+  def play_move(self):
+    # play player move
+    self.p2.take_action(self.env)
+    # update state histories
+    state = self.env.get_state()
+    self.p1.update_state_history(state)
+    self.p2.update_state_history(state)
+
+    # play ai move
+    self.p1.take_action(self.env)
+    # update state histories
+    state = self.env.get_state()
+    self.p1.update_state_history(state)
+    self.p2.update_state_history(state)

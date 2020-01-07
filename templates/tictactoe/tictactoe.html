@@ -47,6 +47,7 @@
         <p>
           <form method="POST">
             {% csrf_token %}
+            <input type="hidden" name="play" value="true">
             <input id="train" type="submit" value="Play" class="btn btn-primary btn-lg"></input>
           </form>
         </p>  
@@ -54,19 +55,19 @@
       <div class="col-md-6 boxy" >
         <table align='center'>
           <tr>
-            <td id="0" class="ttt"></td>
-            <td id="1" class="ttt"></td>
-            <td id="2" class="ttt"></td>
+            <td id="0" class="ttt">{{ pos0 }}</td>
+            <td id="1" class="ttt">{{ pos1 }}</td>
+            <td id="2" class="ttt">{{ pos2 }}</td>
           </tr>
           <tr>
-            <td id="3" class="ttt"></td>
-            <td id="4" class="ttt"></td>
-            <td id="5" class="ttt"></td>
+            <td id="3" class="ttt">{{ pos3 }}</td>
+            <td id="4" class="ttt">{{ pos4 }}</td>
+            <td id="5" class="ttt">{{ pos5 }}</td>
           </tr>
           <tr>
-            <td id="6" class="ttt"></td>
-            <td id="7" class="ttt"></td>
-            <td id="8" class="ttt"></td>
+            <td id="6" class="ttt">{{ pos6 }}</td>
+            <td id="7" class="ttt">{{ pos7 }}</td>
+            <td id="8" class="ttt">{{ pos8 }}</td>
           </tr>
         </table>     
       </div>
